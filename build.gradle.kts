@@ -20,6 +20,10 @@ dependencies {
     // (in a separate module for demo project and in testMain).
     // With compose.desktop.common you will also lose @Preview functionality
     implementation(compose.desktop.currentOs)
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation ("org.jsoup:jsoup:1.16.1")
+    implementation("com.google.code.gson:gson:2.10.1")
 }
 
 compose.desktop {
