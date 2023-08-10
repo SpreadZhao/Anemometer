@@ -14,11 +14,11 @@ interface LoginService {
     fun getLoginPage(): Call<ResponseBody>
 
     @GET("authserver/checkNeedCaptcha.htl")
-    fun checkNeedCaptcha(@Query("username") username: String, @Query("_") time: String): Call<CaptchaResponse>
+    fun checkNeedCaptcha(@Query("username") username: String, @Query("_") time: String): Call<ResponseBody>
 
     // https://github.com/square/retrofit/issues/3275
     @POST("authserver/login")
     @JvmSuppressWildcards
-    fun login(@Body attrs: LoginRequestBody): Call<ResponseBody>
+    fun login(@Body attrs: String): Call<ResponseBody>
 
 }

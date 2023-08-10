@@ -15,6 +15,7 @@ class LoggingInterceptor : Interceptor {
 //        } catch (e: FileNotFoundException) {
 //            println("First time login")
 //        }
+        println("请求信息：")
         val cookie = CookieHolder.cookie
         val request = chain.request().newBuilder()
             .addHeader("content-type", "application/x-www-form-urlencoded")
@@ -30,7 +31,7 @@ class LoggingInterceptor : Interceptor {
             } else 0).toString())
             .build()
         println("Headers: ${request.headers()}")
-        println("Query: ${request.body()}")
+        println("Request Body: ${request.body()}")
         return chain.proceed(request);
     }
 }

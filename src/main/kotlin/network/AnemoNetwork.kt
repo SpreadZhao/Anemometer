@@ -22,7 +22,7 @@ object AnemoNetwork {
 
     suspend fun checkNeedCaptcha(username: String) = run {
         val currTime = System.currentTimeMillis().toString()
-        loginService.checkNeedCaptcha(username, currTime).await()
+        loginService.checkNeedCaptcha(username, currTime).awaitAsString()
     }
 
     suspend fun login(username: String, password: String, key: String, lt: String, execution: String): LoginResponse {
@@ -38,7 +38,7 @@ object AnemoNetwork {
         )
         println("body: ${Gson().toJson(body)}")
         return suspendCoroutine { continuation ->
-            loginService.login(body).enqueue(object : Callback<ResponseBody> {
+            loginService.login(Gson().toJson(body)).enqueue(object : Callback<ResponseBody> {
                 override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                     println("状态码: ${response.code()}")
                     when (response.code()) {

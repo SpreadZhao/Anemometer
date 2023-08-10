@@ -11,6 +11,7 @@ import java.io.FileWriter
 class CookieInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val response = chain.proceed(chain.request())
+        println("响应信息：")
         println("response headers: ${response.headers()}")
         val cookies = response.headers("set-cookie")
         cookies.let {
