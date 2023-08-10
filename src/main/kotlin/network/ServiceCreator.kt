@@ -1,5 +1,8 @@
 package network
 
+import network.intercepter.CookieInterceptor
+import network.intercepter.LoggingInterceptor
+import okhttp3.CookieJar
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -14,7 +17,9 @@ object ServiceCreator {
         .addConverterFactory(GsonConverterFactory.create())
         .client(
             OkHttpClient.Builder()
-                .addInterceptor(LoggingIntercepter()).build()
+                .addInterceptor(LoggingInterceptor())
+                .addInterceptor(CookieInterceptor())
+                .build()
         )
         .build()
 

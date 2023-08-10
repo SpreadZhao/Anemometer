@@ -33,13 +33,20 @@ fun App() {
                 )
                 Button(onClick = {
                     coroutineScope.launch {
+                        println("发送第一次请求")
                         val page = AnemoNetwork.getLoginPage()
+                        println("发送第二次请求")
+                        val needCaptcha = AnemoNetwork.checkNeedCaptcha(username)
+                        println("need: ${needCaptcha.isNeed}")
                         val doc = Jsoup.parse(page)
+                        println("Body: ${doc.body()}")
                         val hiddenForms = doc.select("input[type=hidden]")
                         val key = hiddenForms.select("input#pwdEncryptSalt").first()?.`val`()
                         val lt = hiddenForms.select("input#lt").first()?.`val`()
-                        val execution = hiddenForms.select("input#execution").first()?.`val`()
+                        val execution = hiddenForms.select("[name=execution]").first()?.`val`()
+                        println("发送第三次请求")
                         val res = AnemoNetwork.login(username, password, key ?: "", lt ?: "", execution ?: "")
+                        println("code: ${res.code}")
                         when (res.status) {
                             NetStatus.OK -> {
                                 println("Login success")
