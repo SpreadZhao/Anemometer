@@ -7,10 +7,12 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+
 object ServiceCreator {
 
     private const val LOGIN_URL = "https://ids.xidian.edu.cn/"
 
+//    var cookieJar: CookieJar = PersistentCookieJar(SetCookieCache(), SharedPrefsCookiePersistor(context))
     private val retrofit = Retrofit.Builder()
         .baseUrl(LOGIN_URL)
 //        .addConverterFactory(ToStringConverterFactory())

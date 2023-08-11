@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName
 data class LoginRequestBody(
     val username: String,
     val password: String,
+    val captcha: String,
     @SerializedName("rememberMe")
     val rememberMe: String,
     val cllt: String,

@@ -17,10 +17,14 @@ class CookieInterceptor : Interceptor {
         cookies.let {
             println("接收到的cookie: $it")
             val res = StringBuilder()
-            for (cookie in cookies) {
-                if (cookie.contains("route") || cookie.contains("JSESSIONID")) {
-                    res.append(cookie.substring(0, cookie.indexOf(";") + 1))
+            for (i in cookies.indices) {
+                if (i != cookies.lastIndex) {
+                    res.append(cookies[i].substring(0, cookies[i].indexOf(";") + 1)).append(" ")
                 }
+                else {
+                    res.append(cookies[i].substring(0, cookies[i].indexOf(";")))
+                }
+//                res.append("${cookie};")
             }
 //            val cookieFile = File("CookieFile")
 //            val writer = FileWriter(cookieFile, false)
@@ -31,6 +35,10 @@ class CookieInterceptor : Interceptor {
             if (!CookieHolder.get) CookieHolder.cookie = res.toString()
         }
         return response
+    }
+
+    private fun writeCookie(cookies: List<String>) {
+
     }
 }
 

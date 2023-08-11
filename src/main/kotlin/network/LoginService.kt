@@ -18,7 +18,8 @@ interface LoginService {
 
     // https://github.com/square/retrofit/issues/3275
     @POST("authserver/login")
+    @FormUrlEncoded
     @JvmSuppressWildcards
-    fun login(@Body attrs: String): Call<ResponseBody>
+    fun login(@FieldMap attrs: Map<String, String>): Call<ResponseBody>
 
 }

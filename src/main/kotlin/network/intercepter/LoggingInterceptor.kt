@@ -4,6 +4,7 @@ import network.status.CookieHolder
 import okhttp3.Interceptor
 import okhttp3.Response
 import retrofit2.http.Headers
+import util.PrintUtil
 import java.io.FileNotFoundException
 import java.io.FileReader
 
@@ -15,23 +16,29 @@ class LoggingInterceptor : Interceptor {
 //        } catch (e: FileNotFoundException) {
 //            println("First time login")
 //        }
-        println("请求信息：")
+        println("请求信息：${chain.request().method()}")
+
         val cookie = CookieHolder.cookie
-        val request = chain.request().newBuilder()
-            .addHeader("content-type", "application/x-www-form-urlencoded")
-            .addHeader(
-                "user-agent","Mozilla/5.0 (Linux; Android 11;" +
-                        "WayDroid x86_64 Device Build/RQ3A.211001.001; wv)" +
-                        "AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0" +
-                        "Chrome/112.0.5615.136 Safari/537.36"
+        val request = chain.request().newBuilder().apply {
+            addHeader("Content-Type", "application/x-www-form-urlencoded")
+            addHeader(
+                "User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36 Edg/115.0.1901.200"
             )
-            .addHeader("cookie", cookie)
-            .addHeader("content-length", (if (chain.request().body() != null) {
-                chain.request().body().toString().length
-            } else 0).toString())
-            .build()
+            .addHeader("Cookie", cookie)
+                .addHeader("Connection", "keep-alive")
+                .addHeader("Cache-Control", "max-age=0")
+                .addHeader("Accept-Encoding", "utf8")
+                .addHeader("Accept-Language", "en-GB,en;q=0.9,en-US;q=0.8,zh-CN;q=0.7,zh;q=0.6")
+                .addHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-")
+            if (chain.request().body() != null) {
+                addHeader("Content-Length", "${chain.request().body()!!.contentLength()}")
+            }
+        }.build()
         println("Headers: ${request.headers()}")
-        println("Request Body: ${request.body()}")
+        println("Request Body Length: ${request.body()?.contentLength()}")
+        println("Request Body Type: ${request.body()?.contentType()}")
+        println("Request Body: ${request.body()?.let { PrintUtil.getBodyContent(it) }}")
+        println("Request URL: ${request.url()}")
         return chain.proceed(request);
     }
 }

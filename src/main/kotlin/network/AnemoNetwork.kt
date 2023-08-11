@@ -1,6 +1,7 @@
 package network
 
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import network.request.LoginRequestBody
 import network.response.CaptchaResponse
 import network.response.LoginResponse
@@ -26,19 +27,33 @@ object AnemoNetwork {
     }
 
     suspend fun login(username: String, password: String, key: String, lt: String, execution: String): LoginResponse {
-        val body = LoginRequestBody(
-            username,
-            EncryptUtil.aesEncrypt(password, key),
-            "true",
-            "userNameLogin",
-            "generalLogin",
-            "submit",
-            lt,
-            execution
+//        val body = LoginRequestBody(
+//            username,
+//            EncryptUtil.aesEncrypt(password, key),
+//            "",
+//            "true",
+//            "userNameLogin",
+//            "generalLogin",
+//            "submit",
+//            lt,
+//            execution
+//        )
+        val map = mapOf(
+            "username" to username,
+            "password" to EncryptUtil.aesEncrypt(password, key),
+            "captcha" to "",
+            "rememberMe" to "true",
+            "cllt" to "userNameLogin",
+            "dllt" to "generalLogin",
+            "_eventId" to "submit",
+            "lt" to "",
+            "execution" to execution
         )
-        println("body: ${Gson().toJson(body)}")
+        // https://www.cnblogs.com/Anidot/p/9266817.html
+        val gson = GsonBuilder().disableHtmlEscaping().create()
+//        println("body: ${gson.toJson(body)}")
         return suspendCoroutine { continuation ->
-            loginService.login(Gson().toJson(body)).enqueue(object : Callback<ResponseBody> {
+            loginService.login(map).enqueue(object : Callback<ResponseBody> {
                 override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                     println("状态码: ${response.code()}")
                     when (response.code()) {

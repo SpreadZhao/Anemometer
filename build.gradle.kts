@@ -11,6 +11,7 @@ version = "1.0-SNAPSHOT"
 repositories {
     mavenCentral()
     maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
+    maven("https://jitpack.io")
     google()
 }
 
@@ -22,8 +23,9 @@ dependencies {
     implementation(compose.desktop.currentOs)
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation ("org.jsoup:jsoup:1.16.1")
+    implementation("org.jsoup:jsoup:1.16.1")
     implementation("com.google.code.gson:gson:2.10.1")
+//    implementation("com.github.franmontiel:PersistentCookieJar:v1.0.1")
 }
 
 compose.desktop {
