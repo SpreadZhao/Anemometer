@@ -73,7 +73,7 @@ fun TestScreen() {
                 Button(onClick = {
                     coroutineScope.launch {
                         println("登录到Ehall")
-                        val response = AnemoNetwork.loginToEhall()
+                        AnemoNetwork.loginToEhall()
                     }
                 }) {
                     Text(text = "登录Ehall")
