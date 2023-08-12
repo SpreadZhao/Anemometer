@@ -1,9 +1,5 @@
-package network
+package network.service
 
-import network.request.LoginRequestBody
-import network.response.CaptchaResponse
-import network.response.LoginResponse
-import okhttp3.Response
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.*
@@ -21,5 +17,8 @@ interface LoginService {
     @FormUrlEncoded
     @JvmSuppressWildcards
     fun login(@FieldMap attrs: Map<String, String>): Call<ResponseBody>
+
+    @GET("authserver/login")
+    fun loginTo(@Query("service") service: String): Call<ResponseBody>
 
 }

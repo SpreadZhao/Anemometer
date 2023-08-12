@@ -1,0 +1,67 @@
+Jsoup login:
+//                        val headers = mutableMapOf(
+////                            "Content-Type" to "application/x-www-form-urlencoded;charset=UTF-8",
+//                            "User-Agent" to "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36 Edg/115.0.1901.200"
+////                            "Connection" to "keep-alive"
+//                        )
+//                        val connection = Jsoup.connect("https://ids.xidian.edu.cn/authserver/login")
+//                            .method(Connection.Method.GET)
+//                            .headers(headers)
+//                            .followRedirects(false)
+//                            .execute()
+//                        val cookies = connection.cookies()
+//                        println("cookies: $cookies")
+//                        val page = connection.parse()
+//                        val hiddenForms = page.select("input[type=hidden]")
+//                        val key = hiddenForms.select("input#pwdEncryptSalt").first()?.`val`()
+//                        val lt = hiddenForms.select("input#lt").first()?.`val`()
+//                        val execution = hiddenForms.select("[name=execution]").first()?.`val`()
+//                        println("key: $key")
+//                        println("lt: $lt")
+//                        println("execution: $execution")
+//                        val need = Jsoup.connect("https://ids.xidian.edu.cn/authserver/checkNeedCaptcha.htl")
+//                            .cookies(cookies)
+//                            .headers(headers)
+//                            .followRedirects(false)
+//                            .data("username", username)
+//                            .data("_", System.currentTimeMillis().toString())
+//                            .get().body()
+//                        val req = Jsoup.connect("https://ids.xidian.edu.cn/authserver/login")
+//                            .cookies(cookies)
+//                            .headers(headers)
+//                            .followRedirects(false)
+//                            .ignoreContentType(true)
+//                            .data(mapOf(
+//                                "username" to username,
+//                                "password" to EncryptUtil.aesEncrypt(password, key ?: ""),
+//                                "captcha" to "",
+//                                "rememberMe" to "true",
+//                                "cllt" to "userNameLogin",
+//                                "dllt" to "generalLogin",
+//                                "_eventId" to "submit",
+//                                "lt" to "",
+//                                "execution" to execution
+//                            ))
+//                            .method(Connection.Method.POST)
+//                        println("headers: ${req.request().headers()}")
+//                        println("body: ${req.request().requestBody()}")
+//                        println("data: ${req.request().data()}")
+//                        println("url: ${req.request().url()}")
+//                        val res = req.execute()
+//                        println("最终code：${res.statusCode()}")
+//                        println("最终headers: ${res.headers()}")
+
+
+//                                val connection = Jsoup.connect(TokenHolder.location)
+//                                    .header("User-Agent", MOBILE_HEADER)
+//                                    .header("cookie", TokenHolder.tempIDSCookie)
+//                                    .ignoreContentType(true)
+//                                    .followRedirects(false)
+//                                    .method(Connection.Method.GET)
+//                                println("请求 headers：${connection.request().headers()}")
+//                                println("请求 url：${connection.request().url()}")
+//                                val response = connection.execute()
+//                                println("登录结果返回码：${response.statusCode()}")
+//                                println("登录结果 headers: ${response.headers()}")
+//                                println("登录结果 body：${response.body()}")
+//                                loginState = "登录成功"

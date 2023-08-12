@@ -9,19 +9,18 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import kotlinx.coroutines.launch
 import network.AnemoNetwork
-import network.status.NetStatus
-import org.jsoup.Jsoup
+import network.constant.NetStatus
 import util.EncryptUtil
-import java.io.BufferedReader
 
 @Composable
 @Preview
-fun App() {
+fun TestScreen() {
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var test by remember { mutableStateOf("") }
     var testRes by remember { mutableStateOf("") }
     var testKey by remember { mutableStateOf("") }
+    var loginState by remember { mutableStateOf("") }
     val coroutineScope = rememberCoroutineScope()
     MaterialTheme {
         LazyColumn {
@@ -48,35 +47,16 @@ fun App() {
                 )
                 Button(onClick = {
                     coroutineScope.launch {
-                        println("发送第一次请求")
-                        repeat(5) {
-                            AnemoNetwork.getLoginPage()
-                        }
-                        println("发送第二次请求")
-                        val page = AnemoNetwork.getLoginPage()
-                        println("第一次请求表单：$page")
-                        println("发送第三次请求")
-                        val needCaptcha = AnemoNetwork.checkNeedCaptcha(username)
-                        println("need: $needCaptcha")
-                        val doc = Jsoup.parse(page)
-//                        println("Body: ${doc.body()}")
-                        val hiddenForms = doc.select("input[type=hidden]")
-                        val key = hiddenForms.select("input#pwdEncryptSalt").first()?.`val`()
-                        val lt = hiddenForms.select("input#lt").first()?.`val`()
-                        val execution = hiddenForms.select("[name=execution]").first()?.`val`()
-                        println("key: $key")
-                        println("lt: $lt")
-                        println("execution: $execution")
-                        println("发送第四次请求")
-                        val res = AnemoNetwork.login(username, password, key ?: "", lt ?: "", execution ?: "")
-                        println("code: ${res.code}")
+                        val res = AnemoNetwork.firstTimeLogin(username, password)
                         when (res.status) {
                             NetStatus.OK -> {
-                                println("Login success")
+                                loginState = "登录成功"
                             }
+
                             NetStatus.WRONG_PASSWORD -> {
                                 println("Wrong password")
                             }
+
                             else -> {
                                 println("Login failure: ${res.msg}")
                             }
@@ -90,7 +70,16 @@ fun App() {
                 }) {
                     Text(text = "加密")
                 }
+                Button(onClick = {
+                    coroutineScope.launch {
+                        println("登录到Ehall")
+                        val response = AnemoNetwork.loginToEhall()
+                    }
+                }) {
+                    Text(text = "登录Ehall")
+                }
                 Text(text = testRes)
+                Text(text = loginState)
             }
         }
     }
@@ -98,6 +87,6 @@ fun App() {
 
 fun main() = application {
     Window(onCloseRequest = ::exitApplication) {
-        App()
+        TestScreen()
     }
 }

@@ -1,9 +1,9 @@
 package util
 
 import okhttp3.RequestBody
+import okio.Buffer
 import java.io.IOException
 import java.nio.charset.Charset
-import okio.Buffer
 
 object PrintUtil {
     fun getBodyContent(body: RequestBody): String {

@@ -1,4 +1,4 @@
-package network
+package network.service
 
 import okhttp3.MediaType
 import okhttp3.RequestBody
@@ -10,7 +10,7 @@ import java.lang.reflect.Type
 /**
  * https://www.itcodar.com/java/how-to-get-string-response-from-retrofit2.html
  */
-class ToStringConverterFactory: Converter.Factory() {
+class ToStringConverterFactory : Converter.Factory() {
 
     private val MEDIA_TYPE = MediaType.parse("text/plain")
 
@@ -20,8 +20,8 @@ class ToStringConverterFactory: Converter.Factory() {
         retrofit: Retrofit
     ): Converter<ResponseBody, *>? {
         if (String.Companion::class.java == type) {
-            return Converter<ResponseBody, String> {
-                    value -> value.string()
+            return Converter<ResponseBody, String> { value ->
+                value.string()
             }
         }
         return null
