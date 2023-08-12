@@ -10,9 +10,9 @@ class EhallLoginResponseInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val response = chain.proceed(chain.request())
         InterceptorHandler.printResponseInfo(response)
-        val cookies = response.headers("set-cookie")
+//        val cookies = response.headers("set-cookie")
         val location = response.headers("location")
-        writeCookies(cookies)
+//        writeCookies(cookies)
         writeLocation(location)
         return response
     }

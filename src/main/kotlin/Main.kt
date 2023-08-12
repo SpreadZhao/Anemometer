@@ -78,6 +78,13 @@ fun TestScreen() {
                 }) {
                     Text(text = "登录Ehall")
                 }
+                Button(onClick = {
+                    coroutineScope.launch {
+
+                    }
+                }) {
+                    Text("成绩查询")
+                }
                 Text(text = testRes)
                 Text(text = loginState)
             }

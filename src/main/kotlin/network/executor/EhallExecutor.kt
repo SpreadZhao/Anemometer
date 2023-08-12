@@ -17,8 +17,17 @@ object EhallExecutor {
             println("登录失败，返回码：${response.code()}")
             return
         }
-        if (TokenHolder.ehallLocation != null && TokenHolder.ehallTempCookie != null) {
-            val response2 = QuickSoup.quickGet(TokenHolder.ehallLocation!!, TokenHolder.ehallTempCookie!!)
+        if (TokenHolder.ehallLocation == null || TokenHolder.ehallTempCookie == null) {
+            println("ehallLocation或者ehallTempCookie为空，不能继续请求登录")
+            return
         }
+//        val response2 = QuickSoup.quickGet(TokenHolder.ehallLocation!!, TokenHolder.ehallTempCookie!!)
+//        QuickSoup.quickGet(
+//            url = "https://ehall.xidian.edu.cn/appShow",
+//            allCookie = TokenHolder.ehallTempCookie ?: "",
+//            params = mapOf(
+//                "appId" to "4768574631264620"
+//            )
+//        )
     }
 }

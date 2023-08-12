@@ -16,7 +16,7 @@ class IDSLoginResponseInterceptor : Interceptor {
         val cookies = response.headers("set-cookie")
         val location = response.headers("location")
         writeLocation(location)
-        writeCookie(cookies)
+//        writeCookie(cookies)
         return response
     }
 

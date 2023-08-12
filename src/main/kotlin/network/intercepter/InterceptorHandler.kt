@@ -10,6 +10,7 @@ object InterceptorHandler {
         println("Request信息")
         println("Method: ${request.method()}")
         println("Headers: ${request.headers()}")
+        println("Cookies: ${request.headers("cookie")}")
         println("Request Body Length: ${request.body()?.contentLength()}")
         println("Request Body Type: ${request.body()?.contentType()}")
         println("Request Body: ${request.body()?.let { PrintUtil.getBodyContent(it) }}")
