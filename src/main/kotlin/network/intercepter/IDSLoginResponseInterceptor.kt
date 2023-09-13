@@ -11,11 +11,12 @@ class IDSLoginResponseInterceptor : Interceptor {
     var longTimeCookie = false
 
     override fun intercept(chain: Interceptor.Chain): Response {
+        println("IDS Response拦截")
         val response = chain.proceed(chain.request())
         InterceptorHandler.printResponseInfo(response)
         val cookies = response.headers("set-cookie")
-        val location = response.headers("location")
-        writeLocation(location)
+//        val location = response.headers("location")
+//        writeLocation(location)
 //        writeCookie(cookies)
         return response
     }

@@ -23,7 +23,7 @@ object InterceptorHandler {
         println("Msg: ${response.message()}")
         println("Headers: ${response.headers()}")
         println("Cookies: ${response.headers("set-cookie")}")
-        println("Body: ${response.body()}")
+        println("has body: ${response.body() != null}")
     }
 
     fun Request.Builder.addBaseHeaders(oldRequest: Request) = apply {

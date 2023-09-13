@@ -19,7 +19,15 @@ object AnemoNetwork {
     }
 
     suspend fun loginToEhall() = withContext(Dispatchers.IO) {
-        EhallExecutor.login()
+        EhallExecutor.loginToEhall()
+    }
+
+    suspend fun enterApp(appId: String) = withContext(Dispatchers.IO) {
+        EhallExecutor.enterApp(appId)
+    }
+
+    suspend fun isLoggedIn() = withContext(Dispatchers.IO) {
+        EhallExecutor.isLoggedIn()
     }
 
 }

@@ -8,6 +8,7 @@ import okhttp3.Response
 class EhallLoginResponseInterceptor : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
+        println("Ehall Response拦截")
         val response = chain.proceed(chain.request())
         InterceptorHandler.printResponseInfo(response)
 //        val cookies = response.headers("set-cookie")

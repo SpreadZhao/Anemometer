@@ -21,4 +21,7 @@ interface LoginService {
     @GET("authserver/login")
     fun loginTo(@Query("service") service: String): Call<ResponseBody>
 
+    @GET
+    fun redirectTo(@Url location: String): Call<ResponseBody>
+
 }

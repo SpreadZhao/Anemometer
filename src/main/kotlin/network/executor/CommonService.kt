@@ -11,7 +11,7 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
-object CustomService {
+object CommonService {
     val loginIDSService = ServiceCreator.create(
         ServiceCreator.RetrofitType.IDS_LOGIN,
         LoginService::class.java

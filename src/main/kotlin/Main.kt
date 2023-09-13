@@ -9,7 +9,7 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import kotlinx.coroutines.launch
 import network.AnemoNetwork
-import network.constant.NetStatus
+import network.constant.AppStore
 import util.EncryptUtil
 
 @Composable
@@ -48,19 +48,19 @@ fun TestScreen() {
                 Button(onClick = {
                     coroutineScope.launch {
                         val res = AnemoNetwork.firstTimeLogin(username, password)
-                        when (res.status) {
-                            NetStatus.OK -> {
-                                loginState = "登录成功"
-                            }
-
-                            NetStatus.WRONG_PASSWORD -> {
-                                println("Wrong password")
-                            }
-
-                            else -> {
-                                println("Login failure: ${res.msg}")
-                            }
-                        }
+//                        when (res.status) {
+//                            NetStatus.OK -> {
+//                                loginState = "登录成功"
+//                            }
+//
+//                            NetStatus.WRONG_PASSWORD -> {
+//                                println("Wrong password")
+//                            }
+//
+//                            else -> {
+//                                println("Login failure: ${res.msg}")
+//                            }
+//                        }
                     }
                 }) {
                     Text(text = "login")
@@ -80,7 +80,16 @@ fun TestScreen() {
                 }
                 Button(onClick = {
                     coroutineScope.launch {
-
+                        println("检查是否登录")
+                        AnemoNetwork.isLoggedIn()
+                    }
+                }) {
+                    Text("检查是否登录")
+                }
+                Button(onClick = {
+                    coroutineScope.launch {
+                        println("进入成绩查询应用")
+                        AnemoNetwork.enterApp(AppStore.GRADE_QUERY)
                     }
                 }) {
                     Text("成绩查询")
