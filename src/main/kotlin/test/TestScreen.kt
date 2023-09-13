@@ -76,7 +76,7 @@ fun TestScreen() {
                 Button(onClick = {
                     coroutineScope.launch {
                         println("进入成绩查询应用")
-                        AnemoNetwork.enterApp(AppStore.GRADE_QUERY)
+                        AnemoNetwork.getScore()
                     }
                 }) {
                     Text("成绩查询")

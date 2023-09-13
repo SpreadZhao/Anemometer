@@ -2,6 +2,7 @@ package network
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import network.constant.AppStore
 import network.executor.EhallExecutor
 import network.executor.IDSLoginExecutor
 import org.jsoup.Jsoup
@@ -22,8 +23,8 @@ object AnemoNetwork {
         EhallExecutor.loginToEhall()
     }
 
-    suspend fun enterApp(appId: String) = withContext(Dispatchers.IO) {
-        EhallExecutor.enterApp(appId)
+    suspend fun getScore() = withContext(Dispatchers.IO) {
+        EhallExecutor.getScore()
     }
 
     suspend fun isLoggedIn() = withContext(Dispatchers.IO) {

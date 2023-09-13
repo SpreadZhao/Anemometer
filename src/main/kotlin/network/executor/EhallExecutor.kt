@@ -1,5 +1,6 @@
 package network.executor
 
+import network.constant.AppStore
 import network.constant.TokenHolder
 import network.executor.CommonService.await
 import network.executor.CommonService.ehallService
@@ -34,13 +35,23 @@ object EhallExecutor {
 //        )
     }
 
-    suspend fun enterApp(appId: String) {
+    suspend fun getScore() {
+        enterApp(AppStore.GRADE_QUERY)?.let {
+            println("enterApp location: $it")
+            ehallService.simpleGet(it).await()
+            val data = mapOf(
+                "*json" to 1,
+            )
+        }
+    }
+
+    private suspend fun enterApp(appId: String): String? {
         val response = ehallService.enterApp(appId).await()
         val locations = response.headers().values("Location")
-        if (locations.isEmpty()) println("Location为空")
-        for (location in locations) {
-            println("enterApp结果的Location: $location")
+        if (locations.isNotEmpty()) {
+            return locations[0]
         }
+        return null
     }
 
     suspend fun isLoggedIn() {
