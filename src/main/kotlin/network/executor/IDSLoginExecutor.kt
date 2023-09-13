@@ -43,29 +43,6 @@ object IDSLoginExecutor {
             "execution" to execution
         )
         // https://www.cnblogs.com/Anidot/p/9266817.html
-//        val gson = GsonBuilder().disableHtmlEscaping().create()
-//        return suspendCoroutine { continuation ->
-//            loginIDSService.login(map).enqueue(object : Callback<ResponseBody> {
-//                override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-//                    println("状态码: ${response.code()}")
-//                    when (response.code()) {
-//                        401 -> continuation.resume(LoginResponse(NetStatus.WRONG_PASSWORD, msg = "密码错误"))
-//                        301, 302 -> continuation.resume(LoginResponse(NetStatus.OK, response.code()))
-//                        else -> continuation.resume(
-//                            LoginResponse(
-//                                NetStatus.FAILURE,
-//                                response.code(),
-//                                response.body()?.string() ?: ""
-//                            )
-//                        )
-//                    }
-//                }
-//
-//                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-//                    continuation.resumeWithException(t)
-//                }
-//            })
-//        }
         var response = loginIDSService.login(map).await()
         if (response.code() !in 301 .. 302) {
             println("IDS 登录失败")

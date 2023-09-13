@@ -48,19 +48,6 @@ fun TestScreen() {
                 Button(onClick = {
                     coroutineScope.launch {
                         val res = AnemoNetwork.firstTimeLogin(username, password)
-//                        when (res.status) {
-//                            NetStatus.OK -> {
-//                                loginState = "登录成功"
-//                            }
-//
-//                            NetStatus.WRONG_PASSWORD -> {
-//                                println("Wrong password")
-//                            }
-//
-//                            else -> {
-//                                println("Login failure: ${res.msg}")
-//                            }
-//                        }
                     }
                 }) {
                     Text(text = "login")
