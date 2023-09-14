@@ -11,7 +11,6 @@ import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.lang.StringBuilder
 
 
 object ServiceCreator {
@@ -105,8 +104,6 @@ object ServiceCreator {
                 .build()
         )
         .build()
-
-
 
 
     fun <T> create(type: RetrofitType, serviceClass: Class<T>): T = when (type) {

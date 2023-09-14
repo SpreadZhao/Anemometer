@@ -1,7 +1,3 @@
-import org.apache.logging.log4j.LogManager
-import java.lang.StringBuilder
-
-
 fun main() {
 
     println(parsePathToList("/auth/abc/def"))

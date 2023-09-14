@@ -1,7 +1,6 @@
 package network.cookie
 
 import okhttp3.Cookie
-import java.lang.StringBuilder
 
 class CookieManager {
 

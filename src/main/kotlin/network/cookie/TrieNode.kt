@@ -9,6 +9,7 @@ class TrieNode(
     var hasCookie = false
     val cookies: MutableList<Cookie>
     val name: String
+
     init {
         children = HashMap()
         cookies = mutableListOf()

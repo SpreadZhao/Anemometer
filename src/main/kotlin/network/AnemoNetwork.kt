@@ -2,7 +2,6 @@ package network
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import network.constant.AppStore
 import network.executor.EhallExecutor
 import network.executor.IDSLoginExecutor
 import org.jsoup.Jsoup

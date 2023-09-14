@@ -1,7 +1,6 @@
 package network.executor
 
 import network.constant.AppStore
-import network.constant.TokenHolder
 import network.executor.CommonService.await
 import network.executor.CommonService.ehallService
 import network.executor.CommonService.loginIDSService
@@ -14,7 +13,7 @@ object EhallExecutor {
 
     suspend fun loginToEhall() {
         var response = loginIDSService.loginTo(SERVICE_EHALL).await()
-        if (response.code() !in 301 .. 302) {
+        if (response.code() !in 301..302) {
             println("登录失败，返回码：${response.code()}")
             return
         }

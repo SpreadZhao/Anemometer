@@ -1,6 +1,5 @@
 package network.intercepter
 
-import network.constant.TokenHolder
 import network.intercepter.InterceptorHandler.addBaseHeaders
 import okhttp3.Interceptor
 import okhttp3.Response

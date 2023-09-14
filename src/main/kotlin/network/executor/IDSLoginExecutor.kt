@@ -1,19 +1,9 @@
 package network.executor
 
-import com.google.gson.GsonBuilder
-import network.constant.NetStatus
 import network.executor.CommonService.await
 import network.executor.CommonService.awaitAsString
 import network.executor.CommonService.loginIDSService
-import network.response.LoginResponse
-import okhttp3.ResponseBody
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import util.EncryptUtil
-import kotlin.coroutines.resume
-import kotlin.coroutines.resumeWithException
-import kotlin.coroutines.suspendCoroutine
 
 object IDSLoginExecutor {
 
@@ -44,7 +34,7 @@ object IDSLoginExecutor {
         )
         // https://www.cnblogs.com/Anidot/p/9266817.html
         var response = loginIDSService.login(map).await()
-        if (response.code() !in 301 .. 302) {
+        if (response.code() !in 301..302) {
             println("IDS 登录失败")
             return // LoginResponse(NetStatus.FAILURE, msg = "返回码：${response.code()}")
         }
