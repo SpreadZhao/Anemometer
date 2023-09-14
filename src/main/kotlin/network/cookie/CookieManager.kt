@@ -20,6 +20,7 @@ class CookieManager {
             p = p.children[currPath]!!
         }
         insertCookie(p.cookies, cookie)
+        println("插入的Cookie信息：\n$p")
         p.hasCookie = true
     }
 
@@ -28,13 +29,16 @@ class CookieManager {
             addAll(trieRoot.cookies)
         }
         val list = parsePathToList(path)
+        println("fetchCookies 解析到的list：$list")
         var p = trieRoot
         for (currPath in list) {
+            println("fetchCookies currPath: $currPath")
             if (!p.children.containsKey(currPath)) {
                 println("获取Cookie失败！path: $path, currPath: $currPath")
                 return res
             }
             p = p.children[currPath]!!
+            println("fetchCookies hasCookie: ${p.hasCookie}")
             if (p.hasCookie) res.addAll(p.cookies)
         }
         return res
@@ -54,6 +58,7 @@ class CookieManager {
             }
             i++
         }
+        if (builder.isNotEmpty()) res.add(builder.toString())
         return res
     }
 

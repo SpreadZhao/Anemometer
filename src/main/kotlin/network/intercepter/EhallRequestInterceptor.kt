@@ -1,11 +1,10 @@
 package network.intercepter
 
-import network.constant.TokenHolder
 import network.intercepter.InterceptorHandler.addBaseHeaders
 import okhttp3.Interceptor
 import okhttp3.Response
 
-class EhallLoginRequestInterceptor : Interceptor {
+class EhallRequestInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         println("Ehall Login Request拦截")
 //        val cookie = TokenHolder.ehallTempCookie ?: ""

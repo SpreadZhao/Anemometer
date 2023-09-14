@@ -5,6 +5,7 @@ import network.constant.TokenHolder
 import network.executor.CommonService.await
 import network.executor.CommonService.ehallService
 import network.executor.CommonService.loginIDSService
+import util.GsonUtil
 
 object EhallExecutor {
 
@@ -21,27 +22,27 @@ object EhallExecutor {
             println("登录Ehall重定向中...")
             response = loginIDSService.redirectTo(response.headers().values("Location")[0]).await()
         }
-//        if (TokenHolder.ehallLocation == null || TokenHolder.ehallTempCookie == null) {
-//            println("ehallLocation或者ehallTempCookie为空，不能继续请求登录")
-//            return
-//        }
-//        val response2 = QuickSoup.quickGet(TokenHolder.ehallLocation!!, TokenHolder.ehallTempCookie!!)
-//        QuickSoup.quickGet(
-//            url = "https://ehall.xidian.edu.cn/appShow",
-//            allCookie = TokenHolder.ehallTempCookie ?: "",
-//            params = mapOf(
-//                "appId" to "4768574631264620"
-//            )
-//        )
     }
 
     suspend fun getScore() {
         enterApp(AppStore.GRADE_QUERY)?.let {
             println("enterApp location: $it")
             ehallService.simpleGet(it).await()
+            val querySetting = mapOf(
+                "name" to "SFYX",
+                "value" to "1",
+                "linkOpt" to "and",
+                "builder" to "m_value_equal"
+            )
             val data = mapOf(
                 "*json" to 1,
+                "querySetting" to GsonUtil.toJsonString(querySetting),
+                "*order" to "+XNXQDM,KCH,KXH",
+                "pageSize" to 1000,
+                "pageNumber" to 1
             )
+            val response = ehallService.xscjcx(data).await()
+            println("学生成绩查询：\n${response.body()?.string()}")
         }
     }
 

@@ -5,7 +5,7 @@ import network.intercepter.InterceptorHandler.parseCookie
 import okhttp3.Interceptor
 import okhttp3.Response
 
-class EhallLoginResponseInterceptor : Interceptor {
+class EhallResponseInterceptor : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
         println("Ehall Response拦截")

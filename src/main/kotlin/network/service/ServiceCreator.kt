@@ -1,8 +1,8 @@
 package network.service
 
 import network.cookie.CookieManager
-import network.intercepter.EhallLoginRequestInterceptor
-import network.intercepter.EhallLoginResponseInterceptor
+import network.intercepter.EhallRequestInterceptor
+import network.intercepter.EhallResponseInterceptor
 import network.intercepter.IDSLoginRequestInterceptor
 import network.intercepter.IDSLoginResponseInterceptor
 import okhttp3.Cookie
@@ -86,8 +86,8 @@ object ServiceCreator {
         .client(
             OkHttpClient.Builder()
                 .cookieJar(myCookieJar)
-                .addInterceptor(EhallLoginRequestInterceptor())
-                .addInterceptor(EhallLoginResponseInterceptor())
+                .addInterceptor(EhallRequestInterceptor())
+                .addInterceptor(EhallResponseInterceptor())
                 .followRedirects(false)
                 .build()
         )
@@ -99,8 +99,8 @@ object ServiceCreator {
         .client(
             OkHttpClient.Builder()
                 .cookieJar(myCookieJar)
-                .addInterceptor(EhallLoginResponseInterceptor())
-                .addInterceptor(EhallLoginRequestInterceptor())
+                .addInterceptor(EhallResponseInterceptor())
+                .addInterceptor(EhallRequestInterceptor())
                 .followRedirects(false)
                 .build()
         )
