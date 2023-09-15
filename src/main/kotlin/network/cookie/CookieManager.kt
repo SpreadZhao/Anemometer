@@ -1,10 +1,32 @@
 package network.cookie
 
+import androidx.compose.runtime.collectAsState
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import okhttp3.Cookie
+import persistant.DataStoreUtil
+import javax.xml.parsers.SAXParserFactory
 
-class CookieManager {
+object CookieManager {
 
     private val trieRoot = TrieNode("/")
+
+    @OptIn(DelicateCoroutinesApi::class)
+    private fun triRootInit(): TrieNode {
+        // TODO: Read trie from xml
+        GlobalScope.launch {
+            DataStoreUtil.getCookie().collect {
+                val factory = SAXParserFactory.newInstance()
+                val xmlReader = factory.newSAXParser().xmlReader
+
+            }
+        }
+        return trieRoot
+    }
+
+    fun toXML() = trieRoot.toXmlString()
 
     fun insertCookie(cookie: Cookie) {
         val path = cookie.path()

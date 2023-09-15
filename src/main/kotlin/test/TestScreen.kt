@@ -14,6 +14,8 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import kotlinx.coroutines.launch
 import network.AnemoNetwork
+import network.cookie.CookieManager
+import persistant.DataStoreUtil
 import util.EncryptUtil
 
 @Composable
@@ -84,6 +86,11 @@ fun TestScreen() {
                     }
                 }) {
                     Text("成绩查询")
+                }
+                Button(onClick = {
+                    coroutineScope.launch { DataStoreUtil.saveCookie(CookieManager) }
+                }) {
+                    Text("Cookie持久化")
                 }
                 Text(text = testRes)
                 Text(text = loginState)

@@ -29,6 +29,9 @@ dependencies {
     implementation("org.htmlunit:htmlunit:3.4.0")
     implementation("org.apache.logging.log4j:log4j-api:2.20.0")
     implementation("org.apache.logging.log4j:log4j-core:2.20.0")
+    implementation("androidx.datastore:datastore-preferences-core:1.0.0")
+    implementation("org.dom4j:dom4j:2.1.4")
+//    implementation("androidx.datastore:datastore-preferences:1.0.0")
 //    implementation("com.github.franmontiel:PersistentCookieJar:v1.0.1")
 }
 

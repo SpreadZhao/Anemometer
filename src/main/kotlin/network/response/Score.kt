@@ -3,6 +3,23 @@ package network.response
 import com.google.gson.annotations.SerializedName
 
 
+data class ScoreResponse(
+    @SerializedName("datas") val data: Data,
+    @SerializedName("code") val code: String
+)
+
+data class Data(
+    @SerializedName("xscjcx") val stuAchievement: StudentAchievement
+)
+
+data class StudentAchievement(
+    @SerializedName("totalSize") val totalSize: Int,
+    @SerializedName("pageNumber") val pageNumber: Int,
+    @SerializedName("pageSize") val pageSize: Int,
+    @SerializedName("rows") val details: List<CourseScore>,
+    @SerializedName("extParams") val extParams: ExtParams
+)
+
 // DM: 代码
 data class CourseScore(
     @SerializedName("BY1") val by1: Any?,
@@ -55,7 +72,7 @@ data class CourseScore(
     @SerializedName("JXBID") val classId: String?,                                  // 教学班id
     @SerializedName("KCLBDM") val lectureTypeCode: String?,                         // 课程类别代号
     @SerializedName("KCLBDM_DISPLAY") val lectureTypeName: String?,                 // 课程类别
-    @SerializedName("KXH") val kxh: String?,                                        // 课序号0
+    @SerializedName("KXH") val lectureSerial: String?,                              // 课序号0
     @SerializedName("DJCJLXDM_DISPLAY") val scoreLevelTypeName: String?,            // 等级成绩类型（百分制，等级制）
     @SerializedName("HASFC") val hasfc: Any?,                                       // 不懂
     @SerializedName("RZLBDM") val rzlbdm: Any?,                                     // 不懂
@@ -65,12 +82,8 @@ data class CourseScore(
 )
 
 data class ExtParams(
-    @SerializedName("logId")
-    val logId: String,
-    @SerializedName("code")
-    val code: Int,
-    @SerializedName("totalPage")
-    val totalPage: Int,
-    @SerializedName("msg")
-    val msg: String
+    @SerializedName("logId") val logId: String,
+    @SerializedName("code") val code: Int,
+    @SerializedName("totalPage") val totalPage: Int,
+    @SerializedName("msg") val msg: String
 )

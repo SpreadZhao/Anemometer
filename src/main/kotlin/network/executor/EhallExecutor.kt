@@ -23,26 +23,26 @@ object EhallExecutor {
         }
     }
 
-    suspend fun getScore() {
-        enterApp(AppStore.GRADE_QUERY)?.let {
-            println("enterApp location: $it")
-            ehallService.simpleGet(it).await()
-            val querySetting = mapOf(
-                "name" to "SFYX",
-                "value" to "1",
-                "linkOpt" to "and",
-                "builder" to "m_value_equal"
-            )
-            val data = mapOf(
-                "*json" to 1,
-                "querySetting" to GsonUtil.toJsonString(querySetting),
-                "*order" to "+XNXQDM,KCH,KXH",
-                "pageSize" to 1000,
-                "pageNumber" to 1
-            )
-            val response = ehallService.xscjcx(data).await()
-            println("学生成绩查询：\n${response.body()?.string()}")
-        }
+    suspend fun getScore() = enterApp(AppStore.GRADE_QUERY)?.let {
+        println("enterApp location: $it")
+        ehallService.simpleGet(it).await()
+        val querySetting = mapOf(
+            "name" to "SFYX",
+            "value" to "1",
+            "linkOpt" to "and",
+            "builder" to "m_value_equal"
+        )
+        val data = mapOf(
+            "*json" to 1,
+            "querySetting" to GsonUtil.toJsonString(querySetting),
+            "*order" to "+XNXQDM,KCH,KXH",
+            "pageSize" to 1000,
+            "pageNumber" to 1
+        )
+        val response = ehallService.xscjcx(data).await()
+        println("学生成绩查询：\n${response.body()?.string()}")
+        if (response.body() != null) response.body()!!.string()
+        else null
     }
 
     private suspend fun enterApp(appId: String): String? {

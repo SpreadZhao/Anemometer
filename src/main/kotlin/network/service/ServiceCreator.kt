@@ -29,7 +29,7 @@ object ServiceCreator {
 
     private val myCookieJar = object : CookieJar {
 
-        private val cookieManager = CookieManager()
+        private val cookieManager = CookieManager
 
         override fun saveFromResponse(url: HttpUrl, cookies: MutableList<Cookie>) {
             cookies.forEach { cookieManager.insertCookie(it) }

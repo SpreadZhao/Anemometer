@@ -23,7 +23,7 @@ object AnemoNetwork {
     }
 
     suspend fun getScore() = withContext(Dispatchers.IO) {
-        EhallExecutor.getScore()
+        val score = EhallExecutor.getScore()
     }
 
     suspend fun isLoggedIn() = withContext(Dispatchers.IO) {

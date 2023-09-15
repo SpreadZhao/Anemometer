@@ -1,0 +1,37 @@
+<TrieNode route="/" name="/" hasCookie="true">
+    <Cookies>
+        <Cookie>MOD_AUTH_CAS=MOD_AUTH_ST-507321-7dv0NVqtyrqlIMtetTIqnnNugjsauthserver3; path=/; httponly</Cookie>
+        <Cookie>EncryptKey=996GqEtHepZgwumO; path=/</Cookie>
+        <Cookie>REFERERCE_TOKEN=c5ddcf27-cc12-4ef3-9dd7-89e7d83f9063; path=/</Cookie>
+        <Cookie>route=efe65af6112e14c9eee4f9e623e0f16d; path=/</Cookie>
+        <Cookie>asessionid=5f1d48bb-297f-4519-8f9b-169f18988570; path=/</Cookie>
+        <Cookie>JSESSIONID=FC2Xv31Q36NwzDLQNLT0G6RfcP5GgGq3LCuu-JUh3QjnESq6WLWa!-788931008; path=/; httponly</Cookie>
+    </Cookies>
+    <Child key="personalInfo">
+        <TrieNode route="/personalInfo" name="/personalInfo" hasCookie="true">
+            <Cookies>
+                <Cookie>happyVoyagePersonal=Wq92fDY0YlGf40XwN3EqUuexGEWOaWffsXjl55HIE5WDR7CnM0IxOzyyWx1T/fV9s/GbGqqEzwAxWXpOiS41BHyFn84AC9YmlpoKFj4WhizB5mpRUO2hHWYjwf+uscYBHeaJADWEXklEIhXkV1jtkXypx8CaGNGAbA6flGXF9L8=; path=/personalInfo; httponly</Cookie>
+                <Cookie>route=443dc54ba4d042eb3f438caa7502b14a; path=/personalInfo</Cookie>
+                <Cookie>JSESSIONID=C57C93B055FA7040FEB433D19A2EE831; path=/personalInfo; httponly</Cookie>
+            </Cookies>
+        </TrieNode>
+    </Child>
+    <Child key="authserver">
+        <TrieNode route="/authserver" name="/authserver" hasCookie="true">
+            <Cookies>
+                <Cookie>route=dc6e91f4e0419918689f4269f452ad92; path=/authserver</Cookie>
+                <Cookie>JSESSIONID=5E68B4263381C507E6D9CDD0D82F47C9; path=/authserver; httponly</Cookie>
+                <Cookie>CASTGC=TGT-129758-vv9wbWeczFbaPSM2pXdg8YhZ4KwJF2sZXY493cJ5PxKAHBlu4dXKdNhH3DfR9eS2uHIauthserver3; expires=Fri, 29 Sep 2023 07:30:09 GMT; path=/authserver; httponly</Cookie>
+            </Cookies>
+        </TrieNode>
+    </Child>
+    <Child key="jwapp">
+        <TrieNode route="/jwapp" name="/jwapp" hasCookie="true">
+            <Cookies>
+                <Cookie>_WEU=G52xRrAw*MxQoxlrmyrDnL4_P40UaVCtQiQrVY4dGQPEFav5vWpbDeREpVxgu1Gr18kRRtolk7hthdP*LCeL9ff7yZVMHFLYIrk1aJF*uGo.; path=/jwapp/</Cookie>
+                <Cookie>EMAP_LANG=zh; path=/jwapp/</Cookie>
+                <Cookie>THEME=cherry; path=/jwapp/</Cookie>
+            </Cookies>
+        </TrieNode>
+    </Child>
+</TrieNode>
